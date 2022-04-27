@@ -1,8 +1,4 @@
-# Note Taker
-A simple note taking app designed to help you sort your notes, to-do list, whatever you may need, all online.
+# Note Taking App
+A note taking app, hosted on Heroku. Can record and recall notes that you've taken.
 
-## Website
-https://sheltered-forest-18168.herokuapp.com/
-![page screenshot](/lib/example.png)
-
-Made by Matthew Parker
+## Live Site
