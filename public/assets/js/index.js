@@ -1,6 +1,3 @@
-const fs = require("fs");
-const path = require("path");
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -32,8 +29,7 @@ const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
     headers: {
-      // Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
   });
 
@@ -41,7 +37,8 @@ const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
   });
@@ -50,7 +47,7 @@ const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
   });
 
@@ -87,7 +84,7 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id
+  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
   if (activeNote.id === noteId) {
     activeNote = {};
@@ -102,7 +99,7 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
-  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'))
+  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
 };
 
@@ -136,7 +133,7 @@ const renderNoteList = async (notes) => {
 
     const spanEl = document.createElement('span');
     spanEl.classList.add('list-item-title');
-    spanEl.innerText = text
+    spanEl.innerText = text;
     spanEl.addEventListener('click', handleNoteView);
 
     liEl.append(spanEl);
@@ -184,5 +181,4 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
 
-//getAndRenderNotes();
-console.log("Working")
+getAndRenderNotes();
